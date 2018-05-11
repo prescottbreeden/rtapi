@@ -8,8 +8,9 @@ const hbs = require('hbs');
 
 const app = express();
 
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+// app.set('views', path.join(__dirname, './client/dist/client'));
+// app.set('view engine', 'hbs');
+app.use(express.static( __dirname + '/client/dist/client' ));
 
 app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({extended: true}));

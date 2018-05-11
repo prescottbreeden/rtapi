@@ -2,25 +2,25 @@ const Task = require('../models/tasks');
 
 module.exports = {
     root: function(req, res) {
-        res.render('index');
+        res.render('index.html');
     },
     getAll: function(req, res) {
-        Task.find({}, function(err, data) {
+        Task.find({}, function(err, query) {
             if(err){
-                res.json(err);
+                res.json( {message: "error", error: err} );
             }
             else {
-                res.json(data);
+                res.json( {message: "success", data: query} );
             }
         })
     },
     getOne: function(req, res) {
-        Task.findOne({_id: req.params.id}, function(err, data) {
+        Task.findOne({_id: req.params.id}, function(err, query) {
             if(err) {
-                res.json(err);
+                res.json( {message: "error", error: err} );
             }
             else {
-                res.json(data);
+                res.json( {message: "success", data: query} );
             }
         })
     },
@@ -31,7 +31,7 @@ module.exports = {
         })
         newTask.save(function(err, success) {
             if(err) {
-                res.json(err);
+                res.json( {message: "error", error: err} );
             }
             else {
                 res.redirect('/tasks');
@@ -44,7 +44,7 @@ module.exports = {
             'description': req.body.description,
             'completed': req.body.completed
         }
-        Task.updateOne({_id: req.params.id}, updatedInfo, function(err, data){
+        Task.updateOne({_id: req.params.id}, updatedInfo, function(err, query){
             if(err)
             {
                 console.log('u suc');
@@ -52,17 +52,17 @@ module.exports = {
             }
             else{
                 console.log('changed a thing');
-                res.json(data);
+                res.json( {message: "success", data: query} );
             }
         })
     },
     delete: function(req, res) {
-        Task.deleteOne({_id: req.body.params}, function(err, data){
+        Task.deleteOne({_id: req.body.params}, function(err, query){
             if(err){
-                res.json(err);
+                res.json( {message: "error", error: err} );
             }
             else {
-                res.json(data);
+                res.json( {message: "success", data: query} );
             }
 
         })

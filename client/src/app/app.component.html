@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <h3>Task API</h3>
+  </div>
+  <div class="row">
+    <div>
+      <button class="btn btn-primary" (click)="getTasksFromService()">Get all Tasks</button>
+    </div>
+  </div>
+  <hr>
+  <div *ngFor="let task of tasks">
+    <h3>{{ task.title }}</h3>
+    <p>{{ task.description }}</p>
+    <p>Completed: {{ task.completed }}</p>
+    <p>{{ task.createdAt }}</p>
+    <button (click)="getTaskFromService(task._id)">Select this Task</button>
+  </div>
+</div>
+
+
