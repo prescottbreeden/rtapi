@@ -57,7 +57,7 @@ module.exports = {
         })
     },
     delete: function(req, res) {
-        Task.deleteOne({_id: req.body.params}, function(err, query){
+        Task.deleteOne({_id: req.params.id}, function(err, query){
             if(err){
                 res.json( {message: "error", error: err} );
             }
